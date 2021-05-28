@@ -30,6 +30,7 @@ namespace asp_poc.service
             return new UserDto(userEntity);
         }
 
+        // TODO performance! https://www.learnentityframeworkcore.com/dbcontext/modifying-data
         public UserDto EditUser(string id, UserDto user)
         {
             User userEntity = _customDbContext.Find<User>(id);
