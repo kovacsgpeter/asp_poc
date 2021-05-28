@@ -41,8 +41,8 @@ namespace asp_poc.service
 
         private void ExchangeData(User userOld, UserDto userNew)
         {
-            if (userNew.Name == null) userOld.Name = userNew.Name;
-            if (userNew.Role == null) userOld.Role = userNew.Role;
+            if (userNew.Name != null) userOld.Name = userNew.Name;
+            if (userNew.Role != null) userOld.Role = userNew.Role;
             userNew.Id = userOld.Id;
             userNew.CreatedDate = userOld.CreatedDate;
             
