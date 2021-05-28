@@ -6,7 +6,7 @@ namespace asp_poc.service
 {
     public class UserService
     {
-        
+
         private readonly ILogger<UserService> _logger;
         private readonly CustomDbContext _customDbContext;
 
@@ -23,12 +23,29 @@ namespace asp_poc.service
 
         public UserDto DeleteUser(string id)
         {
-            throw new System.NotImplementedException();
+
+            User userEntity = _customDbContext.Find<User>(id);
+            _customDbContext.Remove<User>(userEntity);
+            _customDbContext.SaveChanges();
+            return new UserDto(userEntity);
         }
 
         public UserDto EditUser(string id, UserDto user)
         {
-            throw new System.NotImplementedException();
+            User userEntity = _customDbContext.Find<User>(id);
+            ExchangeData(userEntity, user);
+            _customDbContext.Users.Update(userEntity);
+            _customDbContext.SaveChanges();
+            return user;
+        }
+
+        private void ExchangeData(User userOld, UserDto userNew)
+        {
+            if (userNew.Name == null) userOld.Name = userNew.Name;
+            if (userNew.Role == null) userOld.Role = userNew.Role;
+            userNew.Id = userOld.Id;
+            userNew.CreatedDate = userOld.CreatedDate;
+            
         }
 
         public UserDto AddUser(UserDto user)
