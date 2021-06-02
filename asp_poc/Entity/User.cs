@@ -9,6 +9,13 @@ namespace asp_poc.Entity
     {
         public User()
         {
+        } 
+        
+        public User(string id, string name, string role)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Role = role;
         }
 
         public User(UserDto user)

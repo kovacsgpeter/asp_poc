@@ -18,16 +18,17 @@ namespace asp_poc
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     Configuration = configuration;
+        // }
 
-        public IConfiguration Configuration { get; }
+        // public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<CustomDbContext>();
             services.AddControllers();
             // TODO scope!
@@ -48,6 +49,8 @@ namespace asp_poc
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseAuthorization();
 

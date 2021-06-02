@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp_poc", "asp_poc\asp_poc.csproj", "{6D8A3FCC-1943-487E-9DAA-D19F7AF81BF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp_poc_test", "asp_poc_test\asp_poc_test.csproj", "{D1446AF5-B22A-4881-A1D1-070C4218C0B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{6D8A3FCC-1943-487E-9DAA-D19F7AF81BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D8A3FCC-1943-487E-9DAA-D19F7AF81BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D8A3FCC-1943-487E-9DAA-D19F7AF81BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1446AF5-B22A-4881-A1D1-070C4218C0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1446AF5-B22A-4881-A1D1-070C4218C0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1446AF5-B22A-4881-A1D1-070C4218C0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1446AF5-B22A-4881-A1D1-070C4218C0B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

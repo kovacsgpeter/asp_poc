@@ -23,6 +23,14 @@ namespace asp_poc.Controllers
             _logger = logger;
             _userService = userService;
         }
+        
+        [HttpGet]
+        [Route("All")]
+        public List<UserDto> GetAll()
+        {
+            _logger.LogInformation("Request getall");
+            return _userService.GetAll();
+        }  
 
         [HttpGet]
         public UserDto Get(string id)

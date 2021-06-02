@@ -1,4 +1,5 @@
 ﻿using System;
+using asp_poc.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -14,7 +15,18 @@ namespace asp_poc.Entity
             _configuration = configuration;
         }
 
-        public DbSet<User> Users { get; set; }
+        private DbSet<User> _users;
+
+        public virtual DbSet<User> getUsers()
+        {
+            return _users;
+        }
+        
+        public virtual void setUsers(DbSet<User> users)
+        {
+            _users = users;
+        }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

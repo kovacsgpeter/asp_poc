@@ -1,4 +1,5 @@
-﻿using asp_poc.Entity;
+﻿using System.Collections.Generic;
+using asp_poc.Entity;
 using asp_poc.Model;
 using Microsoft.Extensions.Logging;
 
@@ -35,7 +36,7 @@ namespace asp_poc.service
         {
             User userEntity = _customDbContext.Find<User>(id);
             ExchangeData(userEntity, user);
-            _customDbContext.Users.Update(userEntity);
+            _customDbContext.getUsers().Update(userEntity);
             _customDbContext.SaveChanges();
             return user;
         }
@@ -56,6 +57,16 @@ namespace asp_poc.service
             _customDbContext.SaveChanges();
             user.Id = userEntity.Id;
             return user;
+        }
+
+        public List<UserDto> GetAll()
+        {
+            List<UserDto> users = new List<UserDto>();
+            foreach (User userE in _customDbContext.getUsers())
+            {
+                users.Add(new UserDto(userE));
+            }
+            return users;
         }
     }
 }
