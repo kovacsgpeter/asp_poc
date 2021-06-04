@@ -19,7 +19,7 @@ namespace asp_poc.service
 
         public UserDto GetUser(string id)
         {
-            return new UserDto(_customDbContext.Find<User>(id));
+            return new UserDto(_customDbContext._users.Find(id));
         }
 
         public UserDto DeleteUser(string id)
@@ -36,7 +36,7 @@ namespace asp_poc.service
         {
             User userEntity = _customDbContext.Find<User>(id);
             ExchangeData(userEntity, user);
-            _customDbContext.getUsers().Update(userEntity);
+            _customDbContext._users.Update(userEntity);
             _customDbContext.SaveChanges();
             return user;
         }
@@ -62,7 +62,7 @@ namespace asp_poc.service
         public List<UserDto> GetAll()
         {
             List<UserDto> users = new List<UserDto>();
-            foreach (User userE in _customDbContext.getUsers())
+            foreach (User userE in _customDbContext._users)
             {
                 users.Add(new UserDto(userE));
             }

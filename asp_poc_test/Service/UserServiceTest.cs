@@ -5,6 +5,7 @@ using asp_poc.Model;
 using asp_poc.service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -14,7 +15,7 @@ namespace asp_poc_test
     public class UserServiceTest
     {
         private CustomDbContext _context;
-        private ILogger<UserService> _logger;
+        // private ILogger<UserService> _logger;
       
 
 
@@ -25,22 +26,25 @@ namespace asp_poc_test
         private void SetupMocks() 
         {
             // 1. Create moq object
-            var context = new Mock<CustomDbContext>();
+            var config = new Mock<IConfiguration>();
+            var context = new Mock<CustomDbContext>(null);
             var logger = new Mock<ILogger>();
             var dbSet = new Mock<DbSet<User>>();
 
             
             // 2. Setup the returnables
+            // input.SetupGet(x => x.ColumnNames).Returns(temp);
+
             context
-                .Setup(o => o.getUsers()
-                    //.Find(It.IsAny<string>()))
+                .SetupGet(o => o._users
+                    // .Find(It.IsAny<string>()))
                 ).Returns(dbSet.Object);  
-                    
-                    // 2. Setup the returnables
-                    dbSet
-                .Setup(o => o.Find(It.IsAny<string>())
+                //     
+                //     // 2. Setup the returnables
+                dbSet
+                .Setup(o => o.Find(It.IsAny<string>()))
                     //.Find(It.IsAny<string>()))
-                ).Returns(
+                .Returns(
                     new User(
                     "1001",
                     "Mr.A",
@@ -56,8 +60,14 @@ namespace asp_poc_test
         public void Test1()
         {
             SetupMocks();
+            
             UserService userService = new UserService(null, _context);
             UserDto userDto = userService.GetUser("any");
+            Assert.True(userDto.Id.Equals("1001"));
+            Assert.True(userDto.Name.Equals("Mr.A"));
+            Assert.True(userDto.Role.Equals("A"));
+            Assert.NotNull(userDto.CreatedDate);
+
 
 
         }

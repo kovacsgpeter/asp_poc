@@ -15,17 +15,17 @@ namespace asp_poc.Entity
             _configuration = configuration;
         }
 
-        private DbSet<User> _users;
+        public virtual DbSet<User> _users { get; set; }
 
-        public virtual DbSet<User> getUsers()
-        {
-            return _users;
-        }
-        
-        public virtual void setUsers(DbSet<User> users)
-        {
-            _users = users;
-        }
+        // public virtual DbSet<User> getUsers()
+        // {
+        //     return this._users;
+        // }
+        //
+        // public virtual void setUsers(DbSet<User> users)
+        // {
+        //     this._users = users;
+        // }
         
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
