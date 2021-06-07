@@ -16,6 +16,7 @@ namespace asp_poc.service
         {
             _logger = logger;
             _customDbContext = customDbContext;
+            _customDbContext._users.Load();
         }
 
         public UserDto GetUser(string id)
@@ -26,8 +27,8 @@ namespace asp_poc.service
         public UserDto DeleteUser(string id)
         {
 
-            User userEntity = _customDbContext.Find<User>(id);
-            _customDbContext.Remove<User>(userEntity);
+            User userEntity = _customDbContext._users.Find(id);
+            _customDbContext.Remove(userEntity);
             _customDbContext.SaveChanges();
             return new UserDto(userEntity);
         }
@@ -35,7 +36,7 @@ namespace asp_poc.service
         // TODO performance! https://www.learnentityframeworkcore.com/dbcontext/modifying-data
         public UserDto EditUser(string id, UserDto user)
         {
-            User userEntity = _customDbContext.Find<User>(id);
+            User userEntity = _customDbContext._users.Find(id);
             ExchangeData(userEntity, user);
             _customDbContext._users.Update(userEntity);
             _customDbContext.SaveChanges();
