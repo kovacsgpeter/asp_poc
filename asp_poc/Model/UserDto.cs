@@ -21,7 +21,7 @@ namespace asp_poc.Model
     {
         this.Id = user.Id;
         this.Name = user.Name;
-        this.Role = user.Role;
+        this.Role = user.Role.Name;
         this.CreatedDate = user.CreatedDate;
     }
     }

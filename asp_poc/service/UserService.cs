@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using asp_poc.Entity;
 using asp_poc.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace asp_poc.service
@@ -44,7 +45,8 @@ namespace asp_poc.service
         private void ExchangeData(User userOld, UserDto userNew)
         {
             if (userNew.Name != null) userOld.Name = userNew.Name;
-            if (userNew.Role != null) userOld.Role = userNew.Role;
+            // TODO
+            // if (userNew.Role != null) userOld.Role = _customDbContext._roles.FindByName() userNew.Role;
             userNew.Id = userOld.Id;
             userNew.CreatedDate = userOld.CreatedDate;
             
@@ -62,8 +64,9 @@ namespace asp_poc.service
         public List<UserDto> GetAll()
         {
             List<UserDto> users = new List<UserDto>();
-            foreach (User userE in _customDbContext._users)
+            foreach (User userE in _customDbContext._users.Include(u => u.UserAddresses))
             {
+                
                 users.Add(new UserDto(userE));
             }
             return users;

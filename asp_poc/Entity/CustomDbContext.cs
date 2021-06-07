@@ -16,6 +16,9 @@ namespace asp_poc.Entity
         }
 
         public virtual DbSet<User> _users { get; set; }
+        public virtual DbSet<Role> _roles { get; set; }
+        public virtual DbSet<Address> _Addresses { get; set; }
+        public virtual DbSet<UserAddress> _UserAddresses { get; set; }
 
         // public virtual DbSet<User> getUsers()
         // {
@@ -39,6 +42,35 @@ namespace asp_poc.Entity
                     maxRetryDelay: TimeSpan.FromSeconds(30),
                     errorNumbersToAdd: null);
             });
+        }
+        
+        
+        protected override void OnModelCreating(ModelBuilder objModelBuilder)
+        {
+            
+            
+            objModelBuilder.Entity<Role>()
+                .HasMany(c => c.Users)
+                .WithOne(e => e.Role)
+                .IsRequired();
+            
+            objModelBuilder.Entity<UserAddress>()
+                .HasKey(bc => new { bc.UserId, bc.AddressId });  
+            objModelBuilder.Entity<UserAddress>()
+                .HasOne(bc => bc.User)
+                .WithMany(b => b.UserAddresses)
+                .HasForeignKey(bc => bc.UserId);  
+            objModelBuilder.Entity<UserAddress>()
+                .HasOne(bc => bc.Address)
+                .WithMany(c => c.UserAddresses)
+                .HasForeignKey(bc => bc.AddressId);
+          
+
+
+           
+
+            base.OnModelCreating(objModelBuilder);
+
         }
     }
 }

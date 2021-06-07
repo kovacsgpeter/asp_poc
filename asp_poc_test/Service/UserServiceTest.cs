@@ -48,7 +48,7 @@ namespace asp_poc_test
                     new User(
                     "1001",
                     "Mr.A",
-                    "A"
+                    new Role("Admin")
                     )
                 );
 
