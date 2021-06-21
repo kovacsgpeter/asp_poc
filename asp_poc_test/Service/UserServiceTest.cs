@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using asp_poc.Entity;
 using asp_poc.Model;
 using asp_poc.service;
@@ -73,5 +70,22 @@ namespace asp_poc_test
 
 
         }
+        [Fact]
+        public void Test2()
+        {
+            SetupMocks();
+            
+            UserService userService = new UserService(null, _context);
+            UserDto userDto = userService.DeleteUser("any");
+            Assert.True(userDto.Id.Equals("1001"));
+            Assert.True(userDto.Name.Equals("Mr.A"));
+            Assert.True(userDto.Role.Equals("Admin"));
+            Assert.NotNull(userDto.CreatedDate);
+
+
+
+        }
+        
+       
     }
 }

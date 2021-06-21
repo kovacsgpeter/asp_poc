@@ -4,5 +4,8 @@
   &lt;Assembly Path="C:\Users\kovac\.nuget\packages\moq\4.16.1\lib\netstandard2.1\Moq.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=51ef27ee_002D7019_002D4931_002Dba56_002D24c62bc617a0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;asp_poc_test&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\kovac\RiderProjects\asp_poc\asp_poc_test" Presentation="&amp;lt;asp_poc_test&amp;gt;" /&gt;&#xD;
+  &lt;Project Location="C:\Users\0525b\source\repos\asp_poc\asp_poc_test" Presentation="&amp;lt;asp_poc_test&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b41de648_002Df8dd_002D49b2_002D9a8e_002Db27da04454c2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;asp_poc_test&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\0525b\source\repos\asp_poc\asp_poc_test" Presentation="&amp;lt;asp_poc_test&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
