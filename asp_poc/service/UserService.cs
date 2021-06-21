@@ -24,7 +24,7 @@ namespace asp_poc.service
             return new UserDto(_customDbContext._users.Find(id));
         }
 
-        public UserDto DeleteUser(string id)
+        public virtual UserDto DeleteUser(string id)
         {
             User userEntity = _customDbContext._users.Find(id);
             _customDbContext.Remove(userEntity);

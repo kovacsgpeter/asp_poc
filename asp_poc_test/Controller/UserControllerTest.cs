@@ -22,12 +22,15 @@ namespace asp_poc_test
         
         // TODO: https://stackoverflow.com/questions/66879177/abstract-generic-mocking-cannot-instantiate-proxy-class-of-property
         // TODO: https://stackoverflow.com/questions/63801893/system-notsupportedexception-unsupported-expression-x-x
-        private void SetupMocks() 
+        private UserController SetupMocks() 
         {
             // 1. Create moq object
-            var userService = new Mock<UserService>(null);
-            var logger = new Mock<ILogger>();
+            var userService = new Mock<UserService>(null, null);
             var userDto = new UserDto();
+            userDto.Name = "Mr.A";
+            userDto.Role = new Role("Admin").Name;
+            userDto.Id = "1001";
+
             
             // 2. Setup the returnables
             userService
@@ -37,16 +40,24 @@ namespace asp_poc_test
             // input.SetupGet(x => x.ColumnNames).Returns(temp);
 
 
-            
-                     // 2. Setup the returnables
+
+                     // 2. Setup the returnablesű
+            var mock = new Mock<ILogger<UserController>>();
+            ILogger<UserController> logger = mock.Object;
+            // mock
+            //     .Setup(o => o.LogInformation(It.IsAny<ILogger>(), It.IsAny<string>(), It.IsAny<object[]>())
+            //         // .Find(It.IsAny<string>()))
+            //     ).Verifiable();
+            _userService = userService.Object;
+
+            return new UserController(logger, _userService);
         }
 
         [Fact]
         public void Test1()
         {
-            SetupMocks();
-
-            UserController userController = new UserController(null,_userService);
+           
+            UserController userController = SetupMocks();
             UserDto userDto = userController.Delete("any");
             Assert.True(userDto.Id.Equals("1001"));
             Assert.True(userDto.Name.Equals("Mr.A"));
