@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using asp_poc.Entity;
 using asp_poc.Model;
 using asp_poc.service;
@@ -29,19 +30,20 @@ namespace asp_poc_test
             var config = new Mock<IConfiguration>();
             var context = new Mock<CustomDbContext>(null);
             var logger = new Mock<ILogger>();
-            var dbSet = new Mock<DbSet<User>>();
+            var users = new Mock<DbSet<User>>();
 
             
             // 2. Setup the returnables
-            // input.SetupGet(x => x.ColumnNames).Returns(temp);
-
             context
                 .SetupGet(o => o._users
                     // .Find(It.IsAny<string>()))
-                ).Returns(dbSet.Object);  
-                //     
+                ).Returns(users.Object);
+            // input.SetupGet(x => x.ColumnNames).Returns(temp);
+
+
+            //     
                 //     // 2. Setup the returnables
-                dbSet
+                users
                 .Setup(o => o.Find(It.IsAny<string>()))
                     //.Find(It.IsAny<string>()))
                 .Returns(
@@ -65,7 +67,7 @@ namespace asp_poc_test
             UserDto userDto = userService.GetUser("any");
             Assert.True(userDto.Id.Equals("1001"));
             Assert.True(userDto.Name.Equals("Mr.A"));
-            Assert.True(userDto.Role.Equals("A"));
+            Assert.True(userDto.Role.Equals("Admin"));
             Assert.NotNull(userDto.CreatedDate);
 
 

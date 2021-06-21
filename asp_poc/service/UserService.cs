@@ -16,7 +16,7 @@ namespace asp_poc.service
         {
             _logger = logger;
             _customDbContext = customDbContext;
-            _customDbContext._users.Load();
+            // _customDbContext._users.Load<User>();
         }
 
         public UserDto GetUser(string id)
@@ -26,7 +26,6 @@ namespace asp_poc.service
 
         public UserDto DeleteUser(string id)
         {
-
             User userEntity = _customDbContext._users.Find(id);
             _customDbContext.Remove(userEntity);
             _customDbContext.SaveChanges();
